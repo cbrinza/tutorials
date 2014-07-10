@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:local="*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			
+			import flash.events.Event;
+			
+			private function handleCloseEvent(eventObj:Event):void {
+				myTA.text="foo";
+			}   
+		]]>
+	</fx:Script>
+	
+	<!-- First example -->
+	<local:StateComboBox maxChars="25" 
+						 close="handleCloseEvent(event);"
+						 color="magenta"/>
+	<mx:TextArea id="myTA" />
+	
+	<!--Second example - AddressForm created -->
+	<!--<local:AddressForm/>-->	
+	
+	<!--Example with properties set -->
+	<local:StateComboBoxPropAS id="myCB"
+							   shortNames="false"/>	
+	
+	<s:Button label="Use Short Names" 
+			  click="myCB.setShortName(true);"/>
+	
+	<!--Example using getters and setters -->
+	<local:StateComboBoxGetSet id="myCBGetSet"
+							   shortNames="true"/>
+	<s:Button label="Use Short Names Get Set" 
+			  click="myCBGetSet.shortNames=!myCBGetSet.shortNames;"/>
+							   
+	<!--Example of data binding -->
+	<s:TextArea text="The value of shortNames is {myCBGetSet.shortNames}"/>
+	
+	<!--Direct reference of parent in child -->
+	<s:TextArea id="myTAMain"/>
+	<local:StateComboBoxDirectRef/>
+	
+</s:Application>
